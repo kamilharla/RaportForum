@@ -10,41 +10,40 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#07111f;--panel:#0a1a2e;--b:rgba(0,180,255,0.15);
+  --bg:#07111f;--panel:#0a1a2e;--b:rgba(0,180,255,0.14);
   --c:#00c8ff;--g:#00e8a0;--a:#ffb300;--r:#ff4040;
   --t:#cce0f0;--m:#3a6080;
+  --cat1:#00c8ff;--cat2:#9d4edd;--cat3:#00e8a0;
 }
 html,body{height:100%;overflow:hidden;}
 body{display:flex;flex-direction:column;background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--t);}
 
 header{
-  height:52px;flex-shrink:0;
+  height:54px;flex-shrink:0;
   background:linear-gradient(90deg,#040e1c,#071828);
   border-bottom:1px solid var(--b);
   display:flex;align-items:center;justify-content:space-between;
   padding:0 20px;z-index:100;
 }
-.hi{width:34px;height:34px;border:2px solid var(--c);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--c);font-family:Orbitron;font-size:11px;box-shadow:0 0 12px rgba(0,200,255,.2);}
-.ht{font-family:Orbitron;font-size:14px;letter-spacing:3px;color:var(--c);text-shadow:0 0 14px rgba(0,200,255,.4);}
-.hs{font-family:'Share Tech Mono';font-size:12px;color:var(--m);letter-spacing:1px;margin-top:2px;}
+.hi{width:36px;height:36px;border:2px solid var(--c);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--c);font-family:Orbitron;font-size:12px;box-shadow:0 0 12px rgba(0,200,255,.2);}
+.ht{font-family:Orbitron;font-size:12px;letter-spacing:3px;color:var(--c);text-shadow:0 0 14px rgba(0,200,255,.4);}
+.hs{font-family:'Share Tech Mono';font-size:8px;color:var(--m);letter-spacing:1px;margin-top:2px;}
 .kpis{display:flex;gap:14px;align-items:center;}
 .kpi{text-align:center;}
-.kpi .v{font-family:Orbitron;font-size:17px;color:var(--c);line-height:1;}
-.kpi .l{font-family:'Share Tech Mono';font-size:12px;color:var(--m);letter-spacing:1px;}
-.kpi.a .v{color:var(--a);}.kpi.r .v{color:var(--r);}.kpi.g .v{color:var(--g);}
-.sep{width:1px;height:30px;background:var(--b);}
+.kpi .v{font-family:Orbitron;font-size:18px;color:var(--c);line-height:1;}
+.kpi .l{font-family:'Share Tech Mono';font-size:7px;color:var(--m);letter-spacing:1px;}
+.kpi.a .v{color:var(--a);}.kpi.g .v{color:var(--g);}.kpi.p .v{color:#9d4edd;}
+.sep{width:1px;height:32px;background:var(--b);}
+
+/* CATEGORY PILLS */
+.cat-pills{display:flex;gap:8px;}
+.cat-pill{padding:3px 10px;border-radius:20px;font-size:9px;font-family:'Share Tech Mono';letter-spacing:1px;border:1px solid currentColor;}
 
 .tabs{
-  height:36px;flex-shrink:0;
-  background:#060f1c;border-bottom:1px solid var(--b);
+  height:36px;flex-shrink:0;background:#060f1c;border-bottom:1px solid var(--b);
   display:flex;align-items:flex-end;padding:0 20px;gap:2px;
 }
-.tab{
-  padding:7px 18px;cursor:pointer;font-size:11px;font-weight:600;
-  letter-spacing:2px;text-transform:uppercase;color:var(--m);
-  border:1px solid transparent;border-bottom:none;border-radius:3px 3px 0 0;
-  transition:all .2s;position:relative;bottom:-1px;
-}
+.tab{padding:7px 18px;cursor:pointer;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--m);border:1px solid transparent;border-bottom:none;border-radius:3px 3px 0 0;transition:all .2s;position:relative;bottom:-1px;}
 .tab:hover{color:var(--t);}
 .tab.on{color:var(--c);background:var(--panel);border-color:var(--b);}
 .tab.on::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:var(--panel);}
@@ -52,7 +51,7 @@ header{
 .body{flex:1;display:flex;overflow:hidden;min-height:0;}
 
 aside{
-  width:255px;min-width:255px;flex-shrink:0;
+  width:258px;min-width:258px;flex-shrink:0;
   background:var(--panel);border-right:1px solid var(--b);
   display:flex;flex-direction:column;overflow:hidden;
 }
@@ -62,9 +61,8 @@ aside{
 .ld{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .lr span{font-size:11px;font-weight:500;}
 .fbtn{
-  width:100%;padding:6px 10px;background:rgba(0,20,50,.5);
-  border:1px solid var(--b);color:var(--m);
-  font-family:Rajdhani;font-size:10px;font-weight:600;letter-spacing:1.5px;
+  width:100%;padding:6px 10px;background:rgba(0,20,50,.5);border:1px solid var(--b);
+  color:var(--m);font-family:Rajdhani;font-size:10px;font-weight:600;letter-spacing:1.5px;
   text-transform:uppercase;cursor:pointer;border-radius:2px;text-align:left;
   transition:all .2s;display:flex;justify-content:space-between;margin-bottom:4px;
 }
@@ -92,47 +90,41 @@ svg{width:100%;height:100%;display:block;}
 .cbg{fill:#0d2035;stroke:#142840;stroke-width:.5;}
 .cfoc{stroke:#1e4a6a;stroke-width:.7;cursor:pointer;transition:filter .15s;}
 .cfoc:hover{filter:brightness(1.3);}
-.du1{fill:#0c2540;}.du2{fill:#0d3555;}.du3{fill:#0f476e;}.du4{fill:#6b2808;}.du5{fill:#7a0e0e;}
+/* DU classes — max is 4 in this dataset, range 2.4–3.5 */
+.du1{fill:#0c2540;}.du2{fill:#0d3858;}.du3{fill:#0f5078;}.du4{fill:#5a3500;}.du5{fill:#6b1e00;}
 .conn{fill:none;stroke-linecap:round;}
-
-/* NET */
-.nlink{fill:none;opacity:.22;}.nlink.coop{opacity:.4;}
-.nc circle{stroke-width:2.5;cursor:pointer;}.nc text{text-anchor:middle;dominant-baseline:middle;pointer-events:none;}
-.no circle{stroke-width:1.5;cursor:pointer;}.no text{text-anchor:middle;pointer-events:none;}
-.ni circle{stroke-width:1;stroke-dasharray:4 2;}.ni text{text-anchor:middle;pointer-events:none;}
 @keyframes pulse{0%,100%{opacity:.45}50%{opacity:.1}}
 .pa{animation:pulse 2.8s ease-in-out infinite;}
 
+/* NET */
+.nlink{fill:none;opacity:.2;}.nlink.coop{opacity:.38;}
+.nc circle{stroke-width:2.5;cursor:pointer;}.nc text{text-anchor:middle;dominant-baseline:middle;pointer-events:none;}
+.no circle{stroke-width:1.5;cursor:pointer;}.no text{text-anchor:middle;pointer-events:none;}
+.ni circle{stroke-width:1.2;stroke-dasharray:5 2;}.ni text{text-anchor:middle;pointer-events:none;}
+
 /* TOOLTIP */
-.tip{
-  position:absolute;pointer-events:none;
-  background:rgba(4,12,26,.97);border:1px solid var(--c);
-  border-radius:3px;padding:10px 13px;max-width:240px;min-width:180px;
-  box-shadow:0 0 18px rgba(0,200,255,.18);z-index:200;
-  opacity:0;transition:opacity .12s;backdrop-filter:blur(8px);font-size:11px;
-}
+.tip{position:absolute;pointer-events:none;background:rgba(4,12,26,.97);border:1px solid var(--c);border-radius:3px;padding:10px 13px;max-width:250px;min-width:185px;box-shadow:0 0 18px rgba(0,200,255,.18);z-index:200;opacity:0;transition:opacity .12s;backdrop-filter:blur(8px);font-size:11px;}
 .tip h4{font-family:Orbitron;font-size:10px;color:var(--c);margin-bottom:5px;}
 
 /* SBAR */
-.sbar{
-  height:22px;flex-shrink:0;
-  background:rgba(4,10,22,.9);border-top:1px solid var(--b);
-  display:flex;align-items:center;padding:0 12px;gap:16px;
-  font-family:'Share Tech Mono';font-size:8px;color:var(--m);
-}
+.sbar{height:22px;flex-shrink:0;background:rgba(4,10,22,.9);border-top:1px solid var(--b);display:flex;align-items:center;padding:0 12px;gap:16px;font-family:'Share Tech Mono';font-size:8px;color:var(--m);}
 .live::before{content:'● ';color:var(--g);animation:blink 1.6s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
 /* MATRIX */
 .mwrap{padding:18px 22px;overflow:auto;flex:1;min-height:0;}
 table.mx{border-collapse:collapse;font-family:Rajdhani;font-size:12px;width:100%;}
-table.mx th{padding:8px 11px;font-family:'Share Tech Mono';font-size:8px;letter-spacing:1px;border:1px solid rgba(0,80,150,.4);background:#070f1c;text-align:center;white-space:nowrap;vertical-align:bottom;}
-table.mx th.lh{text-align:left;color:var(--t);min-width:175px;}
+table.mx th{padding:7px 10px;font-family:'Share Tech Mono';font-size:8px;letter-spacing:.5px;border:1px solid rgba(0,80,150,.35);background:#070f1c;text-align:center;vertical-align:bottom;}
+table.mx th.lh{text-align:left;color:var(--t);min-width:170px;}
 table.mx td{padding:7px 10px;border:1px solid rgba(0,30,70,.6);font-weight:600;text-align:center;vertical-align:middle;}
 table.mx td.lbl{text-align:left;font-size:12px;}
 table.mx td.lbl small{display:block;font-family:'Share Tech Mono';font-size:8px;color:var(--m);font-weight:400;}
 table.mx tr:nth-child(even) td{background:rgba(0,20,50,.18);}
 table.mx tr:hover td{background:rgba(0,60,120,.1);}
+
+/* Category bar in matrix */
+.cat-bar-wrap{display:flex;gap:2px;height:4px;border-radius:2px;overflow:hidden;margin-top:4px;}
+.cat-seg{height:4px;}
 </style>
 </head>
 <body>
@@ -141,16 +133,20 @@ table.mx tr:hover td{background:rgba(0,60,120,.1);}
   <div style="display:flex;align-items:center;gap:12px">
     <div class="hi">◈</div>
     <div>
-      <div class="ht">TROJMORZE TECH NEXUS</div>
-      <div class="hs">ANALIZA PATENTÓW DUAL-USE: AUTOMATYZACJA & ROBOTYKA 2020–2025</div>
+      <div class="ht">TRI-SEA TECH NEXUS</div>
+      <div class="hs">ANALIZA PATENTÓW DUAL-USE · 3 KATEGORIE TECHNOLOGICZNE · 2020–2025</div>
     </div>
   </div>
   <div class="kpis">
-    <div class="kpi"><div class="v">965</div><div class="l">patentów</div></div>
+    <div class="cat-pills">
+      <span class="cat-pill" style="color:var(--cat1);border-color:var(--cat1)">Automatyzacja&nbsp;&amp;&nbsp;Robotyzacja</span>
+      <span class="cat-pill" style="color:var(--cat2);border-color:var(--cat2)">AI&nbsp;&amp;&nbsp;Cyberbezpieczeństwo</span>
+      <span class="cat-pill" style="color:var(--cat3);border-color:var(--cat3)">Zaawansowane&nbsp;Materiały</span>
+    </div>
     <div class="sep"></div>
-    <div class="kpi a"><div class="v">245</div><div class="l">high dual-use</div></div>
+    <div class="kpi"><div class="v">4 426</div><div class="l">patentów</div></div>
     <div class="sep"></div>
-    <div class="kpi r"><div class="v">117</div><div class="l">krytycznych&nbsp;5/5</div></div>
+    <div class="kpi a"><div class="v">999</div><div class="l">high DU (≥4)</div></div>
     <div class="sep"></div>
     <div class="kpi g"><div class="v">12</div><div class="l">krajów</div></div>
   </div>
@@ -166,135 +162,195 @@ table.mx tr:hover td{background:rgba(0,60,120,.1);}
   <aside>
     <div class="asec">
       <h3>Poziom Dual-Use</h3>
-      <div class="lr"><div class="ld" style="background:#7a0e0e"></div><span style="color:#ff8080">Krytyczny 5/5</span></div>
-      <div class="lr"><div class="ld" style="background:#6b2808"></div><span style="color:#ffaa60">Wysoki 4/5</span></div>
-      <div class="lr"><div class="ld" style="background:#0f476e"></div><span style="color:#60b0d8">Średni 3/5</span></div>
-      <div class="lr"><div class="ld" style="background:#0d3555"></div><span style="color:#4080a0">Niski ≤2/5</span></div>
+      <div class="lr"><div class="ld" style="background:#6b1e00"></div><span style="color:#ff9060">Wysoki ≥3.5</span></div>
+      <div class="lr"><div class="ld" style="background:#5a3500"></div><span style="color:#ffb860">Podwyższony 3.0–3.5</span></div>
+      <div class="lr"><div class="ld" style="background:#0f5078"></div><span style="color:#60b8d8">Umiarkowany 2.7–3.0</span></div>
+      <div class="lr"><div class="ld" style="background:#0d3858"></div><span style="color:#4080a0">Niski &lt;2.7</span></div>
     </div>
     <div class="asec" id="leg-net" style="display:none">
       <h3>Typ podmiotu (graf)</h3>
       <div class="lr"><div class="ld" style="background:#00c8ff;box-shadow:0 0 5px #00c8ff"></div><span>Kraj</span></div>
       <div class="lr"><div class="ld" style="background:#ff4040;box-shadow:0 0 5px #ff4040"></div><span>Instytucja publiczna</span></div>
       <div class="lr"><div class="ld" style="background:#ffb300;box-shadow:0 0 5px #ffb300"></div><span>Firma prywatna</span></div>
-      <div class="lr"><div class="ld" style="background:#9d4edd;border-radius:2px"></div><span>Klasa IPC</span></div>
+      <div class="lr" style="margin-top:6px"><div class="ld" style="background:var(--cat1);border-radius:2px"></div><span style="color:var(--cat1)">Automatyzacja</span></div>
+      <div class="lr"><div class="ld" style="background:var(--cat2);border-radius:2px"></div><span style="color:var(--cat2)">AI & Cyber</span></div>
+      <div class="lr"><div class="ld" style="background:var(--cat3);border-radius:2px"></div><span style="color:var(--cat3)">Zaw. Materiały</span></div>
     </div>
     <div class="asec">
       <h3>Filtry</h3>
       <button class="fbtn on" onclick="applyFilter('all',this)">Wszystkie <span class="n">12</span></button>
       <button class="fbtn"    onclick="applyFilter('trojmorze',this)">★ Trójmorze <span class="n">9</span></button>
-      <button class="fbtn"    onclick="applyFilter('risk5',this)">🔴 Ocena 5/5 <span class="n">5</span></button>
-      <button class="fbtn"    onclick="applyFilter('high',this)">🟠 Ocena ≥4 <span class="n">7</span></button>
+      <button class="fbtn"    onclick="applyFilter('AR',this)">◈ Automatyzacja&nbsp;i&nbsp;Robotyzacja</button>
+      <button class="fbtn"    onclick="applyFilter('AI',this)">◈ AI&nbsp;i&nbsp;Cyberbezpieczeństwo</button>
+      <button class="fbtn"    onclick="applyFilter('ZM',this)">◈ Zaawansowane&nbsp;Materiały</button>
     </div>
     <div class="iscroll" id="infopanel">
-      <div class="ic"><h4>INSTRUKCJA</h4><p>Najedź na kraj na mapie lub kliknij węzeł w grafie, aby zobaczyć szczegóły. Kolorystyka odzwierciedla średni potencjał dual-use.</p></div>
-      <div class="ic"><h4>SPECJALIZACJE</h4><p>
-        <span class="tag" style="color:var(--c)">PL</span> Integrator systemów<br>
-        <span class="tag" style="color:var(--c)">CZ</span> Drivetrain · Aerodynamika<br>
-        <span class="tag" style="color:var(--c)">HU</span> Platform Hub<br>
-        <span class="tag" style="color:var(--c)">LT</span> Component Lab<br>
-        <span class="tag" style="color:var(--a)">FI</span> Intel &amp; Vision<br>
-        <span class="tag" style="color:#4499ff">SE</span> Strategic Tech Lead<br>
-        <span class="tag" style="color:var(--r)">BG</span> C-UAS · EMP<br>
-        <span class="tag" style="color:var(--a)">TR</span> Aero Production
-      </p></div>
+      <div class="ic"><h4>INSTRUKCJA</h4><p>Najedź na kraj na mapie lub kliknij węzeł w grafie. Kolorystyka = śr. potencjał dual-use. Łuk wokół węzła = udział DU (360°=max).</p></div>
+      <div class="ic">
+        <h4>KATEGORIE</h4>
+        <p>
+          <span class="tag" style="color:var(--cat1)">A&amp;R</span> Automatyzacja i Robotyzacja<br>
+          <span class="tag" style="color:var(--cat2)">AI</span> AI i Cyberbezpieczeństwo<br>
+          <span class="tag" style="color:var(--cat3)">ZM</span> Zaawansowane Materiały
+        </p>
+      </div>
+      <div class="ic">
+        <h4>LIDERZY REGIONALNI</h4>
+        <p>
+          <span class="tag" style="color:#3a88ff">SE</span> 449 pat. | DU 2.77<br>
+          <span class="tag" style="color:#ff6060">FI</span> 686 pat. | DU 2.95 ★<br>
+          <span class="tag" style="color:var(--c)">PL</span> 1908 pat. | DU 2.77<br>
+          <span class="tag" style="color:var(--c)">HU</span> 618 pat. | DU 2.78<br>
+          <span class="tag" style="color:var(--a)">TR</span> 294 pat. | DU 2.91
+        </p>
+      </div>
     </div>
   </aside>
 
   <div class="canvas">
 
-    <!-- MAP -->
     <div class="view on" id="view-map">
-      <div class="view-inner" id="map-inner">
-        <svg id="map-svg"></svg>
-        <div class="tip" id="tip-map"></div>
-      </div>
-      <div class="sbar"><span class="live">AKTYWNY</span><span>EPO/PATSTAT 2020–2025</span><span style="margin-left:auto">SGH WARSZAWA · FORUM KARPACZ 2026</span></div>
+      <div class="view-inner" id="map-inner"><svg id="map-svg"></svg><div class="tip" id="tip-map"></div></div>
+      <div class="sbar"><span class="live">AKTYWNY</span><span>EPO/PATSTAT 2020–2025 · 3 kategorie technologiczne</span><span style="margin-left:auto">SGH WARSZAWA · FORUM KARPACZ 2026</span></div>
     </div>
 
-    <!-- NETWORK -->
     <div class="view" id="view-net">
-      <div class="view-inner" id="net-inner">
-        <svg id="net-svg"></svg>
-        <div class="tip" id="tip-net"></div>
-      </div>
+      <div class="view-inner" id="net-inner"><svg id="net-svg"></svg><div class="tip" id="tip-net"></div></div>
       <div class="sbar"><span class="live">AKTYWNY</span><span>Przeciągnij węzły · Scroll=zoom · Klik=szczegóły</span></div>
     </div>
 
-    <!-- MATRIX -->
     <div class="view" id="view-mx">
       <div class="mwrap" id="mx-container"></div>
-      <div class="sbar"><span class="live">AKTYWNY</span><span>Specjalizacje wg dominujących kategorii patentowych</span></div>
+      <div class="sbar"><span class="live">AKTYWNY</span><span>Specjalizacje technologiczne wg dominujących filarów patentowych z 3 kategorii</span></div>
     </div>
 
   </div>
 </div>
 
 <script>
-// ── DATA ─────────────────────────────────────────────────────
+// ── REAL DATA FROM PATSTAT 4426 patents ───────────────────────
 const C=[
-  {id:'SE',iso:752,name:'Szwecja', hub:'partner',  role:'Strategic Tech Lead',   spec:'Autonomia ciężka, stealth, sieciocentryczność',    patents:269,du:1.81,high:20,crit:12,color:'#3a88ff',orgs:['HUSQVARNA AB','SCANIA CV AB','SAAB AB'],               filary:['Autonomizacja (97%)','Platformy Bezzałogowe (1%)']},
-  {id:'FI',iso:246,name:'Finlandia',hub:'partner', role:'Intel & Vision',         spec:'Sensoryka AI, targeting, systemy zbrojeniowe',      patents:82, du:3.15,high:23,crit:13,color:'#ff6060',orgs:['CODE PLANET SAVER OY','SANDVIK MINING','KILPELÄINEN J.P.'],filary:['Autonomizacja (16%)','Systemy Bezzałogowe (16%)','Systemy Zbrojeniowe (12%)']},
-  {id:'EE',iso:233,name:'Estonia', hub:'trojmorze',role:'Cyber-Resilience',       spec:'Cyberbezpieczeństwo systemów autonomicznych',       patents:2,  du:3.50,high:1, crit:0, color:'#00e8a0',orgs:['—'],                                               filary:['Autonomizacja']},
-  {id:'LV',iso:428,name:'Łotwa',   hub:'trojmorze',role:'Micro-Systems',          spec:'Mikrosystemy, BSP komercyjne',                      patents:2,  du:4.00,high:2, crit:0, color:'#00c8ff',orgs:['SIA FIXAR AERO'],                                  filary:['Systemy Bezzałogowe (100%)']},
-  {id:'LT',iso:440,name:'Litwa',   hub:'trojmorze',role:'Component Lab',          spec:'Elektronika, rapid prototyping, agri-drones',       patents:37, du:2.92,high:13,crit:7, color:'#00c8ff',orgs:['ROBOTOPIA UAB','NORTHROP GRUMMAN [LT]','BAYER AG'], filary:['Autonomizacja (46%)','Rolnictwo/Agri (27%)','Obronność (11%)']},
-  {id:'PL',iso:616,name:'Polska',  hub:'trojmorze',role:'Integrator Systemów',    spec:'Bezzałogowe systemy lądowe, integracja G05D',       patents:55, du:3.11,high:19,crit:7, color:'#00c8ff',orgs:['POLITECHNIKA WARSZAWA','INST. LOTNICTWA','ITWL'],  filary:['Platformy Bezzałogowe (64%)','Autonomizacja (35%)']},
-  {id:'CZ',iso:203,name:'Czechy',  hub:'trojmorze',role:'Drivetrain Center',      spec:'Mechanika precyzyjna, napędy, aerodynamika BSP',    patents:54, du:3.57,high:28,crit:12,color:'#00c8ff',orgs:['ČVUT PRAHA','VŠB-TU OSTRAVA','MODELARNA LIAZ'],    filary:['Autonomizacja (28%)','Aerodynamika (13%)','Infrastruktura (9%)','Sensoryka (9%)']},
-  {id:'SK',iso:703,name:'Słowacja',hub:'trojmorze',role:'Component Lab',          spec:'Komponenty napędowe, prototypowanie',               patents:3,  du:2.67,high:1, crit:0, color:'#00aacc',orgs:['AZD PRAHA [CZ]'],                                  filary:['Autonomizacja (100%)']},
-  {id:'HU',iso:348,name:'Węgry',   hub:'trojmorze',role:'Platform Hub',           spec:'Autonomizacja B64C/G05D, zarządzanie lotem',        patents:50, du:3.40,high:20,crit:12,color:'#00c8ff',orgs:['GUANGZHOU XAIRCRAFT','HUNGAROCONTROL','UNIV. SZEGED'],filary:['Autonomizacja (100%)']},
-  {id:'RO',iso:642,name:'Rumunia', hub:'trojmorze',role:'Data Analytics',         spec:'AI, rój dronów, napędy alternatywne',               patents:4,  du:4.00,high:3, crit:1, color:'#ffb300',orgs:['ARGHIRESCU M.','COMOTI INST.'],                    filary:['Autonomizacja/AI (25%)','Nowe Napędy (25%)','Aerodynamika (25%)']},
-  {id:'BG',iso:100,name:'Bułgaria',hub:'trojmorze',role:'C-UAS / EMP Specialist', spec:'Drony przechwytujące, broń elektromagnetyczna EMP',patents:3,  du:5.00,high:3, crit:3, color:'#ff4040',orgs:['SPACE RESEARCH INST. (BAN)'],                      filary:['Systemy Antydronowe (100%)']},
-  {id:'TR',iso:792,name:'Turcja',  hub:'partner',  role:'Aero Production',        spec:'Zaawansowane płatowce, amunicja krążąca, głowice', patents:20, du:3.90,high:13,crit:7, color:'#ffb300',orgs:['TRANSVARO','ARI DRONES','HAVELSAN'],                filary:['Autonomizacja (20%)','Amunicja Krążąca (10%)','Sensoryka/SAR (5%)']},
+  // id, iso, name, hub, role, spec, patents, du, high, color
+  // cats: AR=Automatyzacja, AI=AI&Cyber, ZM=Zaawansowane materiały
+  {id:'SE',iso:752,name:'Szwecja', hub:'partner',  role:'Strategic Tech Lead',    spec:'Autonomia ciężka, zaawansowane materiały, stealth',
+   patents:449, du:2.77, high:86,  AR:93,  AI:201, ZM:155, color:'#3a88ff',
+   orgs:['SCANIA CV AB','STORA ENSO OYJ','ASSA ABLOY AB','SANDVIK MACH. SOLUTIONS'],
+   filary:['Autonomizacja','Zaawansowane materiały','Wytwarzanie przyrostowe']},
+
+  {id:'FI',iso:246,name:'Finlandia',hub:'partner', role:'Intel & Vision',          spec:'Cyberbezpieczeństwo, systemy bezzałogowe, telekomunikacja',
+   patents:686, du:2.95, high:188, AR:129, AI:367, ZM:190, color:'#ff6060',
+   orgs:['ELISA OYJ','NOKIA TECHNOLOGIES OY','GOOGLE LLC','NOKIA SOLUTIONS'],
+   filary:['Cyberbezpieczeństwo','Systemy Bezzałogowe','Telekomunikacja']},
+
+  {id:'EE',iso:233,name:'Estonia', hub:'trojmorze',role:'Cyber-Resilience',        spec:'Automatyzacja i systemy bezzałogowe',
+   patents:2,   du:3.50, high:1,   AR:2,   AI:0,   ZM:0,   color:'#00e8a0',
+   orgs:['Autostore Technology AS','VITA INCLINATA TECH INC'],
+   filary:['Autonomizacja']},
+
+  {id:'LV',iso:428,name:'Łotwa',   hub:'trojmorze',role:'Micro-Systems',           spec:'Druk 3D, zaawansowane materiały',
+   patents:3,   du:3.50, high:1,   AR:0,   AI:1,   ZM:2,   color:'#00c8ff',
+   orgs:['3D STRONG SIA','ENTANGLE SIA','KLAPERIS ULDIS'],
+   filary:['Wytwarzanie Przyrostowe (Druk 3D)','Zaawansowane Materiały','AI / Komunikacja']},
+
+  {id:'LT',iso:440,name:'Litwa',   hub:'trojmorze',role:'Cyber & Component Lab',   spec:'Cyberbezpieczeństwo, bezpieczeństwo sieci, automatyzacja',
+   patents:194, du:2.68, high:35,  AR:24,  AI:75,  ZM:95,  color:'#00c8ff',
+   orgs:['EVONIK OPERATIONS GMBH','SIEMENS AG','BAYER AG [DE]','LLEIDANETWORKS'],
+   filary:['Bezpieczeństwo Sieci','Cyberbezpieczeństwo','Autonomizacja']},
+
+  {id:'PL',iso:616,name:'Polska',  hub:'trojmorze',role:'Integrator Systemów',     spec:'Autonomizacja, druk 3D, cyberbezpieczeństwo — największa baza patentowa',
+   patents:1908,du:2.77, high:411, AR:283, AI:779, ZM:846, color:'#00c8ff',
+   orgs:['ADVANCED NEW TECH. CO LTD','ALIBABA GROUP','INTEL CORP','ERICSSON TELEFON AB'],
+   filary:['Autonomizacja','Wytwarzanie Przyrostowe (3D)','Cyberbezpieczeństwo i ochrona sieci']},
+
+  {id:'CZ',iso:203,name:'Czechy',  hub:'trojmorze',role:'Drivetrain & Materials',  spec:'Wytwarzanie addytywne, zaawansowane materiały, autonomizacja',
+   patents:219, du:2.68, high:43,  AR:42,  AI:26,  ZM:151, color:'#00c8ff',
+   orgs:['ČVUT PRAHA','VUT V BRNE','UNIV. T. BATI VE ZLÍNĚ','VŠB-TU OSTRAVA'],
+   filary:['Wytwarzanie Addytywne','Zaawansowane materiały','Autonomizacja']},
+
+  {id:'SK',iso:703,name:'Słowacja',hub:'trojmorze',role:'Materials Lab',           spec:'Zaawansowane materiały, druk 3D, automatyzacja',
+   patents:19,  du:2.68, high:3,   AR:2,   AI:4,   ZM:13,  color:'#00aacc',
+   orgs:['ELEKTROTECHNICKÝ ÚSTAV SAV','SLOVENSKÁ TECHNICKÁ UNIV.','FIRST POINT A.S.'],
+   filary:['Zaawansowane materiały','Druk 3D / Technologie przyrostowe','Autonomizacja']},
+
+  {id:'HU',iso:348,name:'Węgry',   hub:'trojmorze',role:'Platform Hub',            spec:'Wytwarzanie przyrostowe, magazynowanie energii, AI i telekomunikacja',
+   patents:618, du:2.78, high:146, AR:37,  AI:247, ZM:334, color:'#00c8ff',
+   orgs:['ZEON CORP','LG ENERGY SOLUTION','QUALCOMM INC','IBM'],
+   filary:['Wytwarzanie przyrostowe','Magazynowanie energii','Telekomunikacja']},
+
+  {id:'RO',iso:642,name:'Rumunia', hub:'trojmorze',role:'Materials & Nano',        spec:'Nanotechnologia, druk 3D, materiały przyrostowe',
+   patents:15,  du:2.80, high:5,   AR:2,   AI:3,   ZM:10,  color:'#ffb300',
+   orgs:['INCDIE COMOTI','INST. CHIMIE MACRO. PETRU PONI','INFLPR'],
+   filary:['Technologie przyrostowe (Druk 3D)','Nanotechnologia','Autonomizacja/AI']},
+
+  {id:'BG',iso:100,name:'Bułgaria',hub:'trojmorze',role:'Cyber & Materials',       spec:'Cyberbezpieczeństwo / Blockchain, inżynieria materiałowa',
+   patents:19,  du:2.42, high:1,   AR:0,   AI:9,   ZM:10,  color:'#60a0e0',
+   orgs:['UNIV. ZA NATS. I SVETOVNO STOP.','ARTMONBAT AD','IKT PLATFORMI OOD'],
+   filary:['Cyberbezpieczeństwo / Blockchain','Inżynieria Materiałowa','Big Data / Analityka']},
+
+  {id:'TR',iso:792,name:'Turcja',  hub:'partner',  role:'Aero & Cyber Production', spec:'Cyberbezpieczeństwo, wytwarzanie przyrostowe, lotnictwo',
+   patents:294, du:2.91, high:79,  AR:13,  AI:197, ZM:84,  color:'#ffb300',
+   orgs:['TURKCELL TECHNOLOGY R&D','TUSAS TURKISH AEROSPACE','TURKCELL TECHNOLOGY'],
+   filary:['Cyberbezpieczeństwo','Wytwarzanie Przyrostowe','Inżynieria Materiałowa']},
 ];
 
 const ORGS=[
-  {id:'SE_SAAB',name:'SAAB AB',            c:'SE',type:'prv',du:4.67,n:6},
-  {id:'SE_HUS', name:'Husqvarna AB',       c:'SE',type:'prv',du:1.0, n:126},
-  {id:'SE_SCA', name:'Scania CV AB',       c:'SE',type:'prv',du:2.93,n:28},
-  {id:'FI_CPS', name:'Code Planet Saver', c:'FI',type:'prv',du:5.0, n:8},
-  {id:'FI_PAT', name:'Patria Land OY',    c:'FI',type:'pub',du:5.0, n:1},
-  {id:'FI_KJP', name:'Kilpeläinen J.P.',  c:'FI',type:'prv',du:4.0, n:5},
-  {id:'FI_SAN', name:'Sandvik Mining',    c:'FI',type:'prv',du:3.0, n:7},
-  {id:'PL_ILot',name:'Inst. Lotnictwa',   c:'PL',type:'pub',du:3.67,n:3},
-  {id:'PL_PW',  name:'Polit. Warszawska', c:'PL',type:'pub',du:2.0, n:4},
-  {id:'PL_ITWL',name:'ITWL',              c:'PL',type:'pub',du:4.0, n:2},
-  {id:'CZ_CVU', name:'ČVUT Praha',        c:'CZ',type:'pub',du:3.91,n:11},
-  {id:'CZ_VSB', name:'VŠB-TU Ostrava',   c:'CZ',type:'pub',du:4.0, n:6},
-  {id:'CZ_LIAZ',name:'Modelarna Liaz',    c:'CZ',type:'prv',du:4.0, n:4},
-  {id:'HU_HC',  name:'Hungarocontrol',    c:'HU',type:'pub',du:5.0, n:2},
-  {id:'HU_SZ',  name:'Univ. Szeged',      c:'HU',type:'pub',du:5.0, n:2},
-  {id:'LT_RBT', name:'Robotopia UAB',     c:'LT',type:'prv',du:2.33,n:3},
-  {id:'LT_NG',  name:'Northrop Gr.[LT]',  c:'LT',type:'prv',du:5.0, n:3},
-  {id:'LV_FIX', name:'SIA Fixar Aero',    c:'LV',type:'prv',du:4.0, n:2},
-  {id:'BG_BAN', name:'Space Res. (BAN)',  c:'BG',type:'pub',du:5.0, n:3},
-  {id:'RO_COM', name:'COMOTI Inst.',       c:'RO',type:'pub',du:4.0, n:1},
-  {id:'RO_ARG', name:'Arghirescu M.',     c:'RO',type:'pub',du:5.0, n:1},
-  {id:'TR_TRV', name:'Transvaro',          c:'TR',type:'prv',du:5.0, n:2},
-  {id:'TR_HAV', name:'Havelsan',           c:'TR',type:'pub',du:5.0, n:1},
-  {id:'TR_ARI', name:'Ari Drones',         c:'TR',type:'prv',du:5.0, n:1},
+  // type: 'pub'=instytucja publiczna, 'prv'=firma prywatna
+  {id:'SE_SCA', name:'Scania CV AB',       c:'SE',type:'prv',du:3.16,n:38},
+  {id:'SE_STO', name:'Stora Enso',         c:'SE',type:'prv',du:2.17,n:30},
+  {id:'SE_ASS', name:'Assa Abloy',         c:'SE',type:'prv',du:2.68,n:28},
+  {id:'SE_SAN', name:'Sandvik Mach.',      c:'SE',type:'prv',du:3.20,n:10},
+  {id:'FI_ELI', name:'Elisa OYJ',          c:'FI',type:'prv',du:3.14,n:51},
+  {id:'FI_NOK', name:'Nokia Technologies', c:'FI',type:'prv',du:3.65,n:26},
+  {id:'FI_GOO', name:'Google LLC [FI]',    c:'FI',type:'prv',du:3.59,n:22},
+  {id:'FI_NNS', name:'Nokia Solutions',    c:'FI',type:'prv',du:2.95,n:19},
+  {id:'PL_ANT', name:'Advanced New Tech.', c:'PL',type:'prv',du:2.86,n:69},
+  {id:'PL_ALI', name:'Alibaba Group',      c:'PL',type:'prv',du:2.78,n:50},
+  {id:'PL_INT', name:'Intel Corp [PL]',    c:'PL',type:'prv',du:3.67,n:46},
+  {id:'PL_ERI', name:'Ericsson AB [PL]',   c:'PL',type:'prv',du:3.56,n:32},
+  {id:'CZ_CVU', name:'ČVUT Praha',         c:'CZ',type:'pub',du:2.91,n:11},
+  {id:'CZ_VUT', name:'VUT v Brně',         c:'CZ',type:'pub',du:2.55,n:11},
+  {id:'CZ_BAT', name:'Univ. T. Bati',      c:'CZ',type:'pub',du:2.55,n:11},
+  {id:'HU_ZEO', name:'Zeon Corp [HU]',     c:'HU',type:'prv',du:2.00,n:35},
+  {id:'HU_LGE', name:'LG Energy Solution', c:'HU',type:'prv',du:2.17,n:24},
+  {id:'HU_QCM', name:'Qualcomm Inc [HU]',  c:'HU',type:'prv',du:3.83,n:12},
+  {id:'HU_IBM', name:'IBM [HU]',            c:'HU',type:'prv',du:3.73,n:11},
+  {id:'LT_EVO', name:'Evonik Operations',  c:'LT',type:'prv',du:2.38,n:8},
+  {id:'LT_SIE', name:'Siemens AG [LT]',    c:'LT',type:'prv',du:3.40,n:5},
+  {id:'TR_TUR', name:'Turkcell Tech.',      c:'TR',type:'prv',du:3.17,n:18},
+  {id:'TR_TUS', name:'TUSAS Aerospace',    c:'TR',type:'pub',du:3.73,n:21},
+  {id:'BG_UNI', name:'Univ. UNSS [BG]',   c:'BG',type:'pub',du:2.67,n:3},
+  {id:'RO_COM', name:'INCDIE COMOTI',       c:'RO',type:'pub',du:3.00,n:2},
+  {id:'SK_STU', name:'Slov. Tech. Univ.',  c:'SK',type:'pub',du:3.00,n:2},
 ];
 
-const IPC_NODES=[
-  {id:'IPC_B64C',name:'B64C',desc:'Płatowce',   color:'#9d4edd'},
-  {id:'IPC_B64U',name:'B64U',desc:'BSP',         color:'#7b2fbe'},
-  {id:'IPC_G05D',name:'G05D',desc:'Autonomia',   color:'#5a0dad'},
-  {id:'IPC_F41', name:'F41/42',desc:'Uzbrojenie',color:'#ff4040'},
-  {id:'IPC_G01', name:'G01',  desc:'Sensoryka',  color:'#ffb300'},
-  {id:'IPC_H04', name:'H04',  desc:'Komunik.',   color:'#00e8a0'},
+// Tech category nodes for network
+const TECH_NODES=[
+  {id:'CAT_AR',name:'A&R',   desc:'Automatyzacja\ni Robotyzacja', color:'#00c8ff'},
+  {id:'CAT_AI',name:'AI/Cy', desc:'AI i\nCyberbezp.',            color:'#9d4edd'},
+  {id:'CAT_ZM',name:'ZM',    desc:'Zaawansowane\nMateriały',      color:'#00e8a0'},
 ];
 
 const cMap=Object.fromEntries(C.map(c=>[c.iso,c]));
 const cById=Object.fromEntries(C.map(c=>[c.id,c]));
 const TMORZE=['PL','CZ','SK','HU','RO','BG','LT','LV','EE'];
 function orgColor(o){return o.type==='pub'?'#ff4040':'#ffb300';}
+
+// Adjusted DU color for range 2.4–3.5
 function duColor(du){
-  if(du>=4.5)return'#ff4040';if(du>=3.8)return'#ff7020';
-  if(du>=3.0)return'#ffb300';if(du>=2.0)return'#40a0e0';return'#2070a0';
+  if(du>=3.4)return'#ff7020';
+  if(du>=3.0)return'#ffb300';
+  if(du>=2.75)return'#50b8d0';
+  return'#2868a0';
 }
 function duClass(du){
-  if(du>=5)return'du5';if(du>=4)return'du4';if(du>=3)return'du3';if(du>=2)return'du2';return'du1';
+  if(du>=3.4)return'du5';
+  if(du>=3.0)return'du4';
+  if(du>=2.75)return'du3';
+  if(du>=2.55)return'du2';
+  return'du1';
 }
 
-// ── TAB SWITCH ───────────────────────────────────────────────
+// ── TAB SWITCH ────────────────────────────────────────────────
 let mapI=false,netI=false,mxI=false;
 function show(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
@@ -306,48 +362,47 @@ function show(id,el){
     if(id==='map'&&!mapI){initMap();mapI=true;}
     if(id==='net'&&!netI){initNet();netI=true;}
     if(id==='mx' &&!mxI ){initMx();mxI=true;}
-    if(id==='map'&&mapI&&window._worldCache)buildMap(window._worldCache);
+    if(id==='map'&&mapI&&window._wc)buildMap(window._wc);
   },40);
 }
 
-// ── MAP ──────────────────────────────────────────────────────
-let mapSvg, mapProj, mapPath;
-
+// ── MAP ───────────────────────────────────────────────────────
+let mapSvg;
 function buildMap(world){
   const el=document.getElementById('map-inner');
-  const W=el.clientWidth, H=el.clientHeight;
+  const W=el.clientWidth,H=el.clientHeight;
   mapSvg.attr('viewBox',`0 0 ${W} ${H}`);
   mapSvg.selectAll('.mc').remove();
 
   const g=mapSvg.append('g').attr('class','mc');
-  const allFeat=topojson.feature(world,world.objects.countries);
-  const focusFeat=allFeat.features.filter(f=>new Set(C.map(c=>c.iso)).has(+f.id));
+  const allF=topojson.feature(world,world.objects.countries);
+  const focF=allF.features.filter(f=>new Set(C.map(c=>c.iso)).has(+f.id));
 
-  mapProj=d3.geoMercator().fitExtent([[28,22],[W-28,H-22]],{type:'FeatureCollection',features:focusFeat});
-  mapPath=d3.geoPath().projection(mapProj);
+  const proj=d3.geoMercator().fitExtent([[26,20],[W-26,H-20]],{type:'FeatureCollection',features:focF});
+  const path=d3.geoPath().projection(proj);
 
-  g.append('path').datum(d3.geoGraticule()()).attr('fill','none').attr('stroke','rgba(0,80,160,.06)').attr('stroke-width','.4').attr('d',mapPath);
-  g.append('g').selectAll('path').data(allFeat.features).join('path').attr('class','cbg').attr('d',mapPath);
-  g.append('g').attr('class','focus-g').selectAll('path').data(focusFeat).join('path')
-    .attr('class',f=>'cfoc '+duClass(cMap[+f.id]?.du||0)).attr('d',mapPath)
+  g.append('path').datum(d3.geoGraticule()()).attr('fill','none').attr('stroke','rgba(0,80,160,.06)').attr('stroke-width','.4').attr('d',path);
+  g.append('g').selectAll('path').data(allF.features).join('path').attr('class','cbg').attr('d',path);
+  g.append('g').attr('class','focus-g').selectAll('path').data(focF).join('path')
+    .attr('class',f=>'cfoc '+duClass(cMap[+f.id]?.du||0)).attr('d',path)
     .on('mousemove',(e,f)=>showMapTip(e,cMap[+f.id]))
     .on('mouseleave',()=>{document.getElementById('tip-map').style.opacity='0';});
   g.append('path').datum(topojson.mesh(world,world.objects.countries,(a,b)=>a!==b))
-    .attr('fill','none').attr('stroke','#0e2540').attr('stroke-width','.6').attr('d',mapPath);
+    .attr('fill','none').attr('stroke','#0e2540').attr('stroke-width','.6').attr('d',path);
 
-  // Centroids with manual nudges
+  // Centroids
   const cents={};
   const adj={SE:[0,-18],FI:[7,-7],LV:[0,0],LT:[0,4],PL:[0,4],CZ:[0,0],SK:[4,0],HU:[0,4],RO:[8,0],BG:[0,4],TR:[24,14],EE:[0,0]};
-  focusFeat.forEach(f=>{
+  focF.forEach(f=>{
     const cc=cMap[+f.id];if(!cc)return;
-    let[cx,cy]=mapPath.centroid(f);
+    let[cx,cy]=path.centroid(f);
     if(adj[cc.id]){cx+=adj[cc.id][0];cy+=adj[cc.id][1];}
     cents[cc.id]=[cx,cy];
   });
 
   // Connections
   const coops=[
-    ['PL','CZ',3],['PL','SE',3],['PL','LT',3],['PL','HU',2],
+    ['PL','CZ',3],['PL','SE',3],['PL','LT',3],['PL','HU',2],['PL','FI',2],
     ['CZ','SK',4],['CZ','HU',3],['CZ','SE',2],
     ['SE','FI',5],['SE','EE',3],['SE','LV',2],['SE','LT',2],
     ['FI','EE',3],['FI','LT',2],['HU','RO',2],['HU','SK',3],['HU','TR',2],
@@ -358,55 +413,66 @@ function buildMap(world){
     if(!cents[a]||!cents[b])return;
     const[x1,y1]=cents[a],[x2,y2]=cents[b];
     const mx=(x1+x2)/2+(y2-y1)*.1,my=(y1+y2)/2-(x2-x1)*.1;
-    const hr=cById[a]?.du>=4||cById[b]?.du>=4;
     cg.append('path').attr('d',`M${x1},${y1} Q${mx},${my} ${x2},${y2}`)
-      .attr('class','conn').attr('stroke',hr?'#ff8000':'#00aadd')
-      .attr('stroke-width',s*.45+.4).attr('stroke-opacity',hr?.28:.17)
-      .attr('stroke-dasharray',hr?'5 3':'none');
+      .attr('class','conn').attr('stroke','#00aadd')
+      .attr('stroke-width',s*.45+.3).attr('stroke-opacity',.18);
   });
 
-  // Hub markers
+  // Hubs with category breakdown arcs
   const hg=g.append('g').attr('class','hubs');
   const tip=document.getElementById('tip-map');
   C.forEach(cc=>{
     if(!cents[cc.id])return;
     const[cx,cy]=cents[cc.id];
-    const r=Math.max(12,Math.sqrt(cc.patents)*2.2);
+    const r=Math.max(12,Math.sqrt(cc.patents)*2.0);
     const col=duColor(cc.du);
     const gh=hg.append('g').attr('transform',`translate(${cx},${cy})`).attr('cursor','pointer')
       .on('mousemove',e=>showMapTip(e,cc)).on('mouseleave',()=>{tip.style.opacity='0';});
 
-    if(cc.du>=3.5) gh.append('circle').attr('class','pa').attr('r',r+8).attr('fill','none').attr('stroke',col).attr('stroke-width','1.2').attr('opacity',.4);
-    gh.append('circle').attr('r',r+3).attr('fill','none').attr('stroke',col).attr('stroke-width','1').attr('opacity',.45);
-    gh.append('circle').attr('r',r).attr('fill',col+'28').attr('stroke',col).attr('stroke-width','2').attr('filter','url(#glm)');
+    if(cc.du>=3.0) gh.append('circle').attr('class','pa').attr('r',r+8).attr('fill','none').attr('stroke',col).attr('stroke-width','1.2').attr('opacity',.38);
+    gh.append('circle').attr('r',r+3).attr('fill','none').attr('stroke',col).attr('stroke-width','1').attr('opacity',.42);
+    gh.append('circle').attr('r',r).attr('fill',col+'26').attr('stroke',col).attr('stroke-width','2').attr('filter','url(#glm)');
 
-    if(cc.du>0){
-      const arc=d3.arc().innerRadius(r+4).outerRadius(r+7).startAngle(-Math.PI/2).endAngle(-Math.PI/2+(cc.du/5)*2*Math.PI);
-      gh.append('path').attr('d',arc()).attr('fill',col).attr('opacity',.88);
-    }
+    // 3-segment arc = category distribution (AR/AI/ZM)
+    const total=cc.AR+cc.AI+cc.ZM||1;
+    let angle=-Math.PI/2;
+    [[cc.AR,'#00c8ff'],[cc.AI,'#9d4edd'],[cc.ZM,'#00e8a0']].forEach(([v,c])=>{
+      const end=angle+(v/total)*2*Math.PI;
+      if(v>0){
+        const arc=d3.arc().innerRadius(r+4).outerRadius(r+8).startAngle(angle).endAngle(end);
+        gh.append('path').attr('d',arc()).attr('fill',c).attr('opacity',.85);
+      }
+      angle=end;
+    });
+
+    // Patent count badge
     const br=Math.max(5,Math.sqrt(cc.patents));
-    gh.append('circle').attr('cx',r-.5).attr('cy',-r+.5).attr('r',br+1).attr('fill','#05101e').attr('stroke',col).attr('stroke-width','1');
+    gh.append('circle').attr('cx',r-.5).attr('cy',-r+.5).attr('r',br+1.5).attr('fill','#05101e').attr('stroke',col).attr('stroke-width','1');
     gh.append('text').attr('x',r-.5).attr('y',-r+.5).attr('text-anchor','middle').attr('dominant-baseline','middle')
-      .attr('font-family','Share Tech Mono').attr('font-size',Math.min(8,br*1.7)).attr('fill',col).text(cc.patents);
+      .attr('font-family','Share Tech Mono').attr('font-size',Math.min(8,br*1.6)).attr('fill',col).text(cc.patents);
 
     gh.append('text').attr('text-anchor','middle').attr('dominant-baseline','middle')
       .attr('font-family','Orbitron').attr('font-size','10px').attr('font-weight','700').attr('fill','white').text(cc.id);
-    gh.append('text').attr('y',r+12).attr('text-anchor','middle')
+    gh.append('text').attr('y',r+13).attr('text-anchor','middle')
       .attr('font-family','Rajdhani').attr('font-size','10px').attr('font-weight','600').attr('fill',col).text(cc.name);
-    gh.append('text').attr('y',r+22).attr('text-anchor','middle')
+    gh.append('text').attr('y',r+23).attr('text-anchor','middle')
       .attr('font-family','Share Tech Mono').attr('font-size','7px').attr('fill','#6080a0').text(cc.role);
   });
 
   // Legend
-  const lx=10, ly=H-138;
+  const lx=10,ly=H-148;
   const lg=g.append('g').attr('transform',`translate(${lx},${ly})`);
-  lg.append('rect').attr('x',-5).attr('y',-6).attr('width',160).attr('height',132).attr('fill','rgba(3,8,18,.92)').attr('stroke','rgba(0,150,220,.18)').attr('rx',3);
+  lg.append('rect').attr('x',-5).attr('y',-8).attr('width',186).attr('height',145).attr('fill','rgba(3,8,18,.92)').attr('stroke','rgba(0,150,220,.18)').attr('rx',3);
   lg.append('text').attr('y',6).attr('font-family','Orbitron').attr('font-size','7px').attr('letter-spacing','2px').attr('fill','#1a4060').text('DUAL-USE SKALA');
-  [['≥4.5 Krytyczny','#ff4040'],['3.8–4.5 Wysoki','#ff7020'],['3.0–3.8 Średni','#ffb300'],['2.0–3.0 Niski','#40a0e0'],['<2.0 Minimalny','#2070a0']].forEach(([l,c],i)=>{
+  [['≥3.4 Wysoki','#ff7020'],['3.0–3.4 Podwyższony','#ffb300'],['2.75–3.0 Umiarkowany','#50b8d0'],['<2.75 Niski','#2868a0']].forEach(([l,c],i)=>{
     lg.append('circle').attr('cx',7).attr('cy',22+i*21).attr('r',6).attr('fill',c+'44').attr('stroke',c).attr('stroke-width','1.5');
-    lg.append('text').attr('x',18).attr('y',27+i*21).attr('fill',c).attr('font-family','Rajdhani').attr('font-size','10px').attr('font-weight','600').text(l);
+    lg.append('text').attr('x',19).attr('y',27+i*21).attr('fill',c).attr('font-family','Rajdhani').attr('font-size','10px').attr('font-weight','600').text(l);
   });
-  lg.append('text').attr('x',7).attr('y',130).attr('fill','#2a5070').attr('font-family','Share Tech Mono').attr('font-size','7px').text('◠ Łuk = udział dual-use (360°=5/5)');
+  lg.append('text').attr('x',5).attr('y',108).attr('fill','#1a4060').attr('font-family','Orbitron').attr('font-size','7px').attr('letter-spacing','2px').text('KATEGORYZACJA ŁUKU');
+  [['#00c8ff','A&R Automatyzacja'],['#9d4edd','AI Cyberbezp.'],['#00e8a0','ZM Materiały']].forEach(([c,l],i)=>{
+    lg.append('rect').attr('x',5).attr('y',115+i*10).attr('width',10).attr('height',6).attr('fill',c).attr('rx',1);
+    lg.append('text').attr('x',20).attr('y',121+i*10).attr('fill',c).attr('font-family','Share Tech Mono').attr('font-size','7.5px').text(l);
+  });
 }
 
 async function initMap(){
@@ -427,14 +493,12 @@ async function initMap(){
       .attr('fill','#ff4040').attr('font-family','Share Tech Mono').attr('font-size','13px')
       .text('Wymaga połączenia z internetem (CDN world-atlas)');return;
   }
-  window._worldCache=world;
+  window._wc=world;
   buildMap(world);
 }
 
-// Resize
 new ResizeObserver(()=>{
-  if(mapI&&document.getElementById('view-map').classList.contains('on')&&window._worldCache)
-    buildMap(window._worldCache);
+  if(mapI&&document.getElementById('view-map').classList.contains('on')&&window._wc)buildMap(window._wc);
 }).observe(document.getElementById('map-inner'));
 
 function showMapTip(e,cc){
@@ -442,27 +506,33 @@ function showMapTip(e,cc){
   const tip=document.getElementById('tip-map');
   const el=document.getElementById('map-inner');
   const rect=el.getBoundingClientRect();
-  const col=duColor(cc.du),pct=(cc.du/5*100).toFixed(0);
+  const col=duColor(cc.du),pct=(cc.du/4*100).toFixed(0);
+  const total=cc.AR+cc.AI+cc.ZM||1;
   tip.innerHTML=`
     <h4>[${cc.id}] ${cc.name}</h4>
     <div class="role">${cc.role}</div>
     <p>${cc.spec}</p>
-    <div class="krow"><span>Patenty:</span><span style="color:var(--c)">${cc.patents}</span></div>
-    <div class="krow"><span>High DU (4–5):</span><span style="color:var(--a)">${cc.high}</span></div>
-    <div class="krow"><span>Krytyczne (5/5):</span><span style="color:var(--r)">${cc.crit}</span></div>
-    <div class="krow"><span>Dual-Use śr.:</span><span style="color:${col}">${cc.du.toFixed(2)}/5</span></div>
+    <div class="krow"><span>Łączna baza:</span><span style="color:var(--c)">${cc.patents}</span></div>
+    <div style="margin-top:5px;font-size:9px;color:var(--m)">Podział kategorii:</div>
+    <div style="display:flex;gap:4px;margin-top:3px;font-family:Share Tech Mono;font-size:9px">
+      <span style="color:#00c8ff">A&R: ${cc.AR}</span>
+      <span style="color:#9d4edd">AI: ${cc.AI}</span>
+      <span style="color:#00e8a0">ZM: ${cc.ZM}</span>
+    </div>
+    <div class="krow" style="margin-top:4px"><span>High DU (≥4):</span><span style="color:var(--a)">${cc.high}</span></div>
+    <div class="krow"><span>Śr. Dual-Use:</span><span style="color:${col}">${cc.du.toFixed(2)}/4</span></div>
     <div class="dbt"><div class="dbf" style="width:${pct}%;background:${col}"></div></div>
     <div style="margin-top:6px;font-size:9px;color:var(--m)">Główne podmioty:</div>
-    <div style="font-size:9px;font-family:Share Tech Mono;color:#80a8c8;line-height:1.8">${cc.orgs.join('<br>')}</div>
+    <div style="font-size:9px;font-family:Share Tech Mono;color:#80a8c8;line-height:1.8">${cc.orgs.slice(0,3).join('<br>')}</div>
   `;
   tip.style.opacity='1';
   let lx=e.clientX-rect.left+14,ly=e.clientY-rect.top-20;
-  if(lx+250>rect.width) lx=e.clientX-rect.left-260;
-  if(ly+260>rect.height) ly=e.clientY-rect.top-270;
+  if(lx+260>rect.width)lx=e.clientX-rect.left-270;
+  if(ly+270>rect.height)ly=e.clientY-rect.top-280;
   tip.style.left=lx+'px';tip.style.top=ly+'px';
 }
 
-// ── NETWORK ──────────────────────────────────────────────────
+// ── NETWORK ───────────────────────────────────────────────────
 function initNet(){
   const el=document.getElementById('net-inner');
   const W=el.clientWidth,H=el.clientHeight;
@@ -471,34 +541,36 @@ function initNet(){
   const defs=svg.append('defs');
   const f=defs.append('filter').attr('id','gln').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
   f.append('feGaussianBlur').attr('stdDeviation','4').attr('result','b');
-  const m=f.append('feMerge');m.append('feMergeNode').attr('in','b');m.append('feMergeNode').attr('in','SourceGraphic');
+  const mm=f.append('feMerge');mm.append('feMergeNode').attr('in','b');mm.append('feMergeNode').attr('in','SourceGraphic');
 
-  const ctryNodes=C.map(c=>({...c,nodeType:'country',r:Math.max(19,Math.sqrt(c.patents)*2.5)}));
-  const orgNodes=ORGS.map(o=>({...o,nodeType:'org',r:Math.max(8,Math.sqrt(o.n)*2.6)}));
-  const ipcNodes=IPC_NODES.map(i=>({...i,nodeType:'ipc',r:22}));
-  const allNodes=[...ctryNodes,...orgNodes,...ipcNodes];
-  const nm=Object.fromEntries(allNodes.map(n=>[n.id,n]));
+  const ctryN=C.map(c=>({...c,nodeType:'country',r:Math.max(18,Math.sqrt(c.patents)*1.9)}));
+  const orgN=ORGS.map(o=>({...o,nodeType:'org',r:Math.max(8,Math.sqrt(o.n)*2.5)}));
+  const techN=TECH_NODES.map(t=>({...t,nodeType:'tech',r:26}));
+  const all=[...ctryN,...orgN,...techN];
+  const nm=Object.fromEntries(all.map(n=>[n.id,n]));
 
-  const ctryIPC={
-    SE:['IPC_B64C','IPC_G05D','IPC_G01'],FI:['IPC_B64C','IPC_G05D','IPC_G01','IPC_F41'],
-    EE:[],LV:['IPC_B64C'],LT:['IPC_B64C','IPC_G05D','IPC_F41'],
-    PL:['IPC_B64C','IPC_G05D'],CZ:['IPC_B64C','IPC_B64U','IPC_G05D'],
-    SK:['IPC_B64C'],HU:['IPC_B64C','IPC_G05D'],
-    RO:['IPC_G05D'],BG:['IPC_B64C','IPC_F41'],TR:['IPC_B64C','IPC_B64U','IPC_F41'],
+  // Each country connects to its dominant tech categories
+  const cCat={
+    SE:['CAT_AR','CAT_AI','CAT_ZM'],FI:['CAT_AI','CAT_AR','CAT_ZM'],
+    EE:['CAT_AR'],LV:['CAT_ZM','CAT_AI'],LT:['CAT_AI','CAT_ZM','CAT_AR'],
+    PL:['CAT_AI','CAT_ZM','CAT_AR'],CZ:['CAT_ZM','CAT_AR','CAT_AI'],
+    SK:['CAT_ZM','CAT_AI'],HU:['CAT_ZM','CAT_AI','CAT_AR'],
+    RO:['CAT_ZM','CAT_AI'],BG:['CAT_AI','CAT_ZM'],TR:['CAT_AI','CAT_ZM','CAT_AR'],
   };
+
   const LINKS=[];
-  ORGS.forEach(o=>LINKS.push({source:o.c,target:o.id,type:'org',s:o.n}));
-  Object.entries(ctryIPC).forEach(([c,ipcs])=>ipcs.forEach(i=>LINKS.push({source:c,target:i,type:'ipc',s:1})));
+  ORGS.forEach(o=>LINKS.push({source:o.c,target:o.id,type:'org',s:Math.sqrt(o.n)}));
+  Object.entries(cCat).forEach(([c,cats])=>cats.forEach(cat=>LINKS.push({source:c,target:cat,type:'cat',s:1})));
   [['SE','FI',5],['SE','PL',3],['SE','CZ',2],['SE','LT',2],['SE','EE',4],['SE','LV',2],
-   ['FI','EE',3],['FI','LT',2],['PL','CZ',3],['PL','HU',2],['PL','LT',3],
+   ['FI','EE',3],['FI','LT',2],['PL','CZ',3],['PL','HU',3],['PL','LT',3],
    ['CZ','SK',4],['CZ','HU',3],['HU','RO',2],['HU','SK',3],['HU','TR',2],
    ['LT','LV',3],['LT','EE',3],['BG','RO',2],['BG','TR',2]
   ].forEach(([a,b,s])=>LINKS.push({source:a,target:b,type:'coop',s}));
 
   const links=LINKS.filter(l=>nm[l.source]&&nm[l.target]);
-  const sim=d3.forceSimulation(allNodes)
-    .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.type==='coop'?115:d.type==='ipc'?185:72).strength(d=>d.type==='coop'?.25:.5))
-    .force('charge',d3.forceManyBody().strength(d=>d.nodeType==='country'?-480:d.nodeType==='ipc'?-200:-90))
+  const sim=d3.forceSimulation(all)
+    .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.type==='coop'?110:d.type==='cat'?175:68).strength(d=>d.type==='coop'?.22:.5))
+    .force('charge',d3.forceManyBody().strength(d=>d.nodeType==='country'?-460:d.nodeType==='tech'?-220:-90))
     .force('center',d3.forceCenter(W/2,H/2))
     .force('collide',d3.forceCollide().radius(d=>d.r+8));
 
@@ -513,26 +585,46 @@ function initNet(){
 
   const lEl=root.append('g').selectAll('line').data(links).join('line')
     .attr('class',d=>'nlink'+(d.type==='coop'?' coop':''))
-    .attr('stroke',d=>d.type==='coop'?'#00aadd':d.type==='ipc'?'#7020aa':'#1a4060')
-    .attr('stroke-width',d=>d.type==='coop'?Math.max(1,d.s*.4):.8);
+    .attr('stroke',d=>d.type==='coop'?'#00aadd':d.type==='cat'?'#446688':'#1a4060')
+    .attr('stroke-width',d=>d.type==='coop'?Math.max(1,d.s*.4):.7);
 
-  const iEl=root.append('g').selectAll('g').data(ipcNodes).join('g').attr('class','ni');
-  iEl.append('circle').attr('r',d=>d.r).attr('fill',d=>d.color+'18').attr('stroke',d=>d.color);
-  iEl.append('text').attr('dy','-1px').attr('fill',d=>d.color).attr('font-size','10px').attr('font-family','Share Tech Mono').text(d=>d.name);
-  iEl.append('text').attr('dy','11px').attr('fill',d=>d.color).attr('font-size','8px').attr('opacity','.6').attr('font-family','Rajdhani').text(d=>d.desc);
+  // Tech category nodes
+  const tEl=root.append('g').selectAll('g').data(techN).join('g').attr('class','ni');
+  tEl.append('circle').attr('r',d=>d.r).attr('fill',d=>d.color+'16').attr('stroke',d=>d.color).attr('stroke-width',1.5).attr('stroke-dasharray','5 2');
+  tEl.append('text').attr('dy','-4px').attr('fill',d=>d.color).attr('font-size','11px').attr('font-family','Orbitron').attr('font-weight','700').text(d=>d.name);
+  tEl.append('text').attr('dy','10px').attr('fill',d=>d.color).attr('font-size','8px').attr('opacity','.65').attr('font-family','Rajdhani').text(d=>d.desc.split('\n')[0]);
+  tEl.append('text').attr('dy','20px').attr('fill',d=>d.color).attr('font-size','8px').attr('opacity','.65').attr('font-family','Rajdhani').text(d=>d.desc.split('\n')[1]||'');
 
-  const oEl=root.append('g').selectAll('g').data(orgNodes).join('g').attr('class','no').call(drg(sim))
+  // Org nodes
+  const oEl=root.append('g').selectAll('g').data(orgN).join('g').attr('class','no').call(drg(sim))
     .on('mousemove',(e,d)=>showNetTip(e,d,tip)).on('mouseleave',()=>tip.style.opacity='0');
   oEl.append('circle').attr('r',d=>d.r).attr('fill',d=>orgColor(d)+'28').attr('stroke',d=>orgColor(d)).attr('stroke-width',1.5).attr('filter','url(#gln)');
   oEl.append('text').attr('dy',d=>-d.r-5).attr('fill',d=>orgColor(d)).attr('font-size','8px').attr('font-family','Share Tech Mono').text(d=>d.name.substring(0,16));
 
-  const cEl=root.append('g').selectAll('g').data(ctryNodes).join('g').attr('class','nc').call(drg(sim))
+  // Country nodes
+  const cEl=root.append('g').selectAll('g').data(ctryN).join('g').attr('class','nc').call(drg(sim))
     .on('mousemove',(e,d)=>showNetTip(e,d,tip)).on('mouseleave',()=>tip.style.opacity='0')
     .on('click',(e,d)=>showInfo(d));
 
-  cEl.filter(d=>d.du>=3.5).append('circle').attr('class','pa')
-    .attr('r',d=>d.r+10).attr('fill','none').attr('stroke',d=>duColor(d.du)).attr('stroke-width',1).attr('opacity',.4);
-  cEl.append('circle').attr('r',d=>d.r).attr('fill',d=>duColor(d.du)+'35').attr('stroke',d=>duColor(d.du)).attr('stroke-width',2.5).attr('filter','url(#gln)');
+  cEl.filter(d=>d.du>=3.0).append('circle').attr('class','pa')
+    .attr('r',d=>d.r+10).attr('fill','none').attr('stroke',d=>duColor(d.du)).attr('stroke-width',1).attr('opacity',.38);
+  cEl.append('circle').attr('r',d=>d.r).attr('fill',d=>duColor(d.du)+'30').attr('stroke',d=>duColor(d.du)).attr('stroke-width',2.5).attr('filter','url(#gln)');
+
+  // Category ring on country nodes
+  cEl.each(function(d){
+    const g=d3.select(this);
+    const total=d.AR+d.AI+d.ZM||1;
+    let ang=-Math.PI/2;
+    [[d.AR,'#00c8ff'],[d.AI,'#9d4edd'],[d.ZM,'#00e8a0']].forEach(([v,c])=>{
+      const end=ang+(v/total)*2*Math.PI;
+      if(v>0){
+        const arc=d3.arc().innerRadius(d.r+3).outerRadius(d.r+6).startAngle(ang).endAngle(end);
+        g.append('path').attr('d',arc()).attr('fill',c).attr('opacity',.8);
+      }
+      ang=end;
+    });
+  });
+
   cEl.append('text').attr('dy','4px').attr('fill','white').attr('font-size','11px').attr('font-weight','700').attr('font-family','Orbitron').text(d=>d.id);
   cEl.append('text').attr('dy',d=>d.r+15).attr('fill',d=>duColor(d.du)).attr('font-size','9px').attr('font-weight','600').attr('font-family','Rajdhani').text(d=>d.name);
 
@@ -540,7 +632,7 @@ function initNet(){
     lEl.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
     cEl.attr('transform',d=>`translate(${d.x},${d.y})`);
     oEl.attr('transform',d=>`translate(${d.x},${d.y})`);
-    iEl.attr('transform',d=>`translate(${d.x},${d.y})`);
+    tEl.attr('transform',d=>`translate(${d.x},${d.y})`);
   });
   window._netSim=sim;
 }
@@ -549,46 +641,54 @@ function showNetTip(e,d,tip){
   const el=document.getElementById('net-inner');
   const rect=el.getBoundingClientRect();
   const du=d.du||0,col=duColor(du);
+  const total=(d.AR||0)+(d.AI||0)+(d.ZM||0);
   tip.innerHTML=`
     <h4>${d.name}</h4>
     ${d.role?`<div class="role">${d.role}</div>`:''}
     ${d.spec?`<p style="margin-top:4px">${d.spec}</p>`:''}
+    ${total>0?`<div style="margin-top:5px;display:flex;gap:6px;font-family:Share Tech Mono;font-size:9px">
+      <span style="color:#00c8ff">A&R: ${d.AR}</span><span style="color:#9d4edd">AI: ${d.AI}</span><span style="color:#00e8a0">ZM: ${d.ZM}</span></div>`:''}
     ${(d.patents||d.n)?`<div class="krow"><span>Patenty:</span><span style="color:var(--c)">${d.patents||d.n}</span></div>`:''}
     ${d.nodeType==='org'?`<div class="krow"><span>Typ:</span><span style="color:${orgColor(d)}">${d.type==='pub'?'Instytucja publiczna':'Firma prywatna'}</span></div>`:''}
-    ${du?`<div class="krow"><span>Dual-Use:</span><span style="color:${col}">${du.toFixed(2)}/5</span></div><div class="dbt"><div class="dbf" style="width:${(du/5*100).toFixed(0)}%;background:${col}"></div></div>`:''}
+    ${du?`<div class="krow"><span>Dual-Use:</span><span style="color:${col}">${du.toFixed(2)}/4</span></div><div class="dbt"><div class="dbf" style="width:${(du/4*100).toFixed(0)}%;background:${col}"></div></div>`:''}
   `;
   tip.style.opacity='1';
   let lx=e.clientX-rect.left+14,ly=e.clientY-rect.top-20;
-  if(lx+250>rect.width)lx=e.clientX-rect.left-260;
-  if(ly+220>rect.height)ly=e.clientY-rect.top-230;
+  if(lx+260>rect.width)lx=e.clientX-rect.left-270;
+  if(ly+230>rect.height)ly=e.clientY-rect.top-240;
   tip.style.left=lx+'px';tip.style.top=ly+'px';
 }
 
 function showInfo(d){
   const col=duColor(d.du);
+  const total=d.AR+d.AI+d.ZM;
   document.getElementById('infopanel').innerHTML=`
     <div class="ic" style="border-color:${col}55">
       <h4 style="color:${col}">[${d.id}] ${d.name}</h4>
       <div class="role">${d.role}</div>
       <p style="margin-top:4px">${d.spec}</p>
       <span class="tag" style="color:${d.hub==='trojmorze'?'var(--c)':'var(--a)'};margin-top:5px;display:inline-block">${d.hub==='trojmorze'?'★ TRÓJMORZE':'PARTNER'}</span>
+      <div style="margin-top:10px;font-size:8px;color:var(--m);font-family:Share Tech Mono;margin-bottom:4px">PODZIAŁ KATEGORII:</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px">
+        ${[['#00c8ff','A&R',d.AR],['#9d4edd','AI/Cy',d.AI],['#00e8a0','ZM',d.ZM]].map(([c,l,v])=>`
+          <div style="text-align:center;background:${c}12;padding:5px;border-radius:2px;border:1px solid ${c}33">
+            <div style="font-family:Orbitron;font-size:14px;color:${c}">${v}</div>
+            <div style="font-size:8px;color:${c}99;font-family:Share Tech Mono">${l}</div>
+          </div>`).join('')}
+      </div>
       <div style="margin-top:8px;display:flex;gap:5px">
         <div style="flex:1;text-align:center;background:rgba(0,200,255,.07);padding:5px;border-radius:2px">
-          <div style="font-family:Orbitron;font-size:15px;color:var(--c)">${d.patents}</div>
-          <div style="font-size:7px;color:var(--m);font-family:Share Tech Mono">patenty</div>
+          <div style="font-family:Orbitron;font-size:15px;color:var(--c)">${total}</div>
+          <div style="font-size:7px;color:var(--m);font-family:Share Tech Mono">łącznie</div>
         </div>
         <div style="flex:1;text-align:center;background:rgba(255,179,0,.07);padding:5px;border-radius:2px">
           <div style="font-family:Orbitron;font-size:15px;color:var(--a)">${d.high}</div>
           <div style="font-size:7px;color:var(--m);font-family:Share Tech Mono">high DU</div>
         </div>
-        <div style="flex:1;text-align:center;background:rgba(255,64,64,.07);padding:5px;border-radius:2px">
-          <div style="font-family:Orbitron;font-size:15px;color:var(--r)">${d.crit}</div>
-          <div style="font-size:7px;color:var(--m);font-family:Share Tech Mono">crit 5/5</div>
-        </div>
       </div>
-      <div class="krow" style="margin-top:7px"><span>Dual-Use:</span><span style="color:${col}">${d.du.toFixed(2)}/5</span></div>
-      <div class="dbt"><div class="dbf" style="width:${(d.du/5*100).toFixed(0)}%;background:${col}"></div></div>
-      <div style="margin-top:7px;font-size:8px;color:var(--m);font-family:Share Tech Mono">PODMIOTY:</div>
+      <div class="krow" style="margin-top:7px"><span>Dual-Use śr.:</span><span style="color:${col}">${d.du.toFixed(2)}/4</span></div>
+      <div class="dbt"><div class="dbf" style="width:${(d.du/4*100).toFixed(0)}%;background:${col}"></div></div>
+      <div style="margin-top:8px;font-size:8px;color:var(--m);font-family:Share Tech Mono">PODMIOTY:</div>
       <div style="font-size:9px;font-family:Share Tech Mono;color:#80a8c8;line-height:1.8">${d.orgs.join('<br>')}</div>
       <div style="margin-top:7px;font-size:8px;color:var(--m);font-family:Share Tech Mono">FILARY:</div>
       <div>${d.filary.map(f=>`<span class="tag" style="color:var(--a)">${f}</span>`).join(' ')}</div>
@@ -596,48 +696,59 @@ function showInfo(d){
   `;
 }
 
-// ── MATRIX ───────────────────────────────────────────────────
+// ── MATRIX ────────────────────────────────────────────────────
 function initMx(){
-  // Columns = human-readable specialization categories
+  // 8 columns = technology specialization categories from real filary data
   const CATS=[
-    {k:'aut',  l:'Autonomizacja',       sub:'Systemy autonomiczne UAV/UGV',        color:'#00c8ff'},
-    {k:'plat', l:'Platformy BSP',        sub:'Konstrukcja platform bezzałogowych',  color:'#7b8fff'},
-    {k:'zbr',  l:'Uzbrojenie & DU',     sub:'Systemy bojowe, amunicja, C-UAS',     color:'#ff4040'},
-    {k:'sen',  l:'Sensoryka & AI',       sub:'Percepcja, rozpoznanie, celowanie',   color:'#ffb300'},
-    {k:'nap',  l:'Napędy & Energia',     sub:'Napędy specjalne, zasilanie BSP',     color:'#00e8a0'},
-    {k:'inf',  l:'Infrastruktura',       sub:'Zarządzanie ruchem, lotniska',        color:'#9d4edd'},
-    {k:'rol',  l:'Agri & Przemysł',      sub:'Rolnictwo, górnictwo, leśnictwo',     color:'#4db860'},
-    {k:'cyber',l:'Cyber & Komunik.',     sub:'Cyberbezp., komunikacja, szyfrowanie',color:'#ff9e40'},
+    {k:'aut',  l:'Autonomizacja\n& Robotyka',    sub:'BSP, pojazdy autonomiczne, drony',       color:'#00c8ff', catKey:'AR'},
+    {k:'ai',   l:'Sztuczna\nInteligencja',        sub:'ML, AI, algorytmy decyzyjne',            color:'#9d4edd', catKey:'AI'},
+    {k:'cyber',l:'Cyberbezpieczeństwo\n& Sieci',  sub:'Ochrona sieci, szyfrowanie, SOC',        color:'#7b4fff', catKey:'AI'},
+    {k:'druk', l:'Druk 3D\n& Wytwarzanie',        sub:'Technologie addytywne, przyrostowe',     color:'#00e8a0', catKey:'ZM'},
+    {k:'mat',  l:'Inżynieria\nMateriałowa',        sub:'Nanomateriały, kompozyty, polimery',     color:'#4db860', catKey:'ZM'},
+    {k:'tel',  l:'Telekomunikacja\n& Łączność',    sub:'5G/6G, sieci radiowe, protokoły',       color:'#ff9e40', catKey:'AI'},
+    {k:'en',   l:'Magazynowanie\nEnergii',          sub:'Baterie, superkondensatory, ogniwa',    color:'#ffee44', catKey:'ZM'},
+    {k:'bio',  l:'Bio &\nNanotech',               sub:'Nanotechnologia, materiały bio',         color:'#60c090', catKey:'ZM'},
   ];
-  // Scale 0–5 based on patent data per specialization
+
+  // Scores 0-5 based on real patent pillar data per country
   const MAT={
-    SE: {aut:5,plat:1,zbr:1,sen:3,nap:2,inf:3,rol:4,cyber:1},
-    FI: {aut:3,plat:2,zbr:5,sen:4,nap:1,inf:1,rol:1,cyber:1},
-    EE: {aut:1,plat:0,zbr:0,sen:0,nap:0,inf:0,rol:0,cyber:4},
-    LV: {aut:1,plat:3,zbr:1,sen:0,nap:0,inf:0,rol:0,cyber:0},
-    LT: {aut:4,plat:1,zbr:2,sen:1,nap:1,inf:1,rol:3,cyber:1},
-    PL: {aut:3,plat:5,zbr:2,sen:1,nap:1,inf:1,rol:1,cyber:1},
-    CZ: {aut:4,plat:3,zbr:2,sen:3,nap:3,inf:3,rol:1,cyber:1},
-    SK: {aut:2,plat:1,zbr:0,sen:0,nap:2,inf:0,rol:1,cyber:0},
-    HU: {aut:5,plat:2,zbr:1,sen:1,nap:1,inf:2,rol:2,cyber:1},
-    RO: {aut:3,plat:2,zbr:1,sen:1,nap:3,inf:0,rol:0,cyber:1},
-    BG: {aut:1,plat:1,zbr:5,sen:1,nap:2,inf:0,rol:0,cyber:0},
-    TR: {aut:3,plat:4,zbr:5,sen:2,nap:2,inf:1,rol:0,cyber:1},
+    SE: {aut:4,ai:3,cyber:2,druk:3,mat:3,tel:3,en:2,bio:2},
+    FI: {aut:3,ai:3,cyber:5,druk:2,mat:2,tel:4,en:1,bio:1},
+    EE: {aut:3,ai:1,cyber:2,druk:0,mat:0,tel:0,en:0,bio:0},
+    LV: {aut:0,ai:1,cyber:1,druk:3,mat:3,tel:0,en:0,bio:0},
+    LT: {aut:2,ai:3,cyber:4,druk:2,mat:2,tel:1,en:0,bio:1},
+    PL: {aut:5,ai:4,cyber:4,druk:5,mat:4,tel:3,en:2,bio:2},
+    CZ: {aut:3,ai:2,cyber:2,druk:4,mat:4,tel:1,en:1,bio:2},
+    SK: {aut:1,ai:1,cyber:1,druk:3,mat:3,tel:0,en:0,bio:1},
+    HU: {aut:2,ai:3,cyber:3,druk:4,mat:4,tel:4,en:5,bio:2},
+    RO: {aut:1,ai:1,cyber:1,druk:3,mat:3,tel:0,en:0,bio:2},
+    BG: {aut:0,ai:1,cyber:2,druk:1,mat:2,tel:0,en:0,bio:1},
+    TR: {aut:2,ai:3,cyber:4,druk:3,mat:3,tel:3,en:1,bio:1},
   };
   const SYM=['—','▪','▪▪','▪▪▪','▪▪▪▪','★'];
 
-  function bg(v,isZ){
+  function bg(v,isAI,isCyb){
     if(v===0)return'rgba(7,15,32,.65)';
     const t=v/5;
-    if(isZ){const r=Math.round(80+t*155),g=Math.round(8+t*18),b=8;return`rgba(${r},${g},${b},.78)`;}
+    if(isCyb){const r=Math.round(30+t*60),g=Math.round(20+t*20),b=Math.round(80+t*120);return`rgba(${r},${g},${b},.72)`;}
+    if(isAI) {const r=Math.round(50+t*90),g=Math.round(10+t*30),b=Math.round(100+t*120);return`rgba(${r},${g},${b},.68)`;}
     const r=Math.round(t*14),g=Math.round(38+t*118),b=Math.round(78+t*138);
     return`rgba(${r},${g},${b},.68)`;
   }
-  function fg(v,isZ){
+  function fg(v){
     if(v===0)return'#1a3050';
     const t=v/5;
-    if(isZ)return t>.5?'#ffc0c0':'#ff8888';
-    return t>.6?'#c0e8ff':t>.3?'#80c0e0':'#5090b0';
+    return t>.6?'#d0eeff':t>.3?'#90c8e0':'#6090b0';
+  }
+
+  // Category breakdown bar for each country
+  function catBar(cc){
+    const total=cc.AR+cc.AI+cc.ZM||1;
+    return`<div class="cat-bar-wrap">
+      <div class="cat-seg" style="width:${cc.AR/total*100}%;background:#00c8ff"></div>
+      <div class="cat-seg" style="width:${cc.AI/total*100}%;background:#9d4edd"></div>
+      <div class="cat-seg" style="width:${cc.ZM/total*100}%;background:#00e8a0"></div>
+    </div>`;
   }
 
   const rows=C.map(cc=>{
@@ -647,80 +758,104 @@ function initMx(){
       <td class="lbl" style="border-left:3px solid ${col}">
         <strong style="color:${col}">[${cc.id}] ${cc.name}</strong>
         <small>${cc.role}</small>
+        ${catBar(cc)}
       </td>
       ${CATS.map(cat=>{
-        const v=row[cat.k]||0,isZ=cat.k==='zbr';
-        return`<td style="background:${bg(v,isZ)};${isZ&&v>0?'border:1px solid rgba(255,60,60,.4);':''}">
-          <div style="color:${fg(v,isZ)};font-size:13px;letter-spacing:1px;line-height:1.1">${SYM[v]}</div>
-          ${v>0?`<div style="color:${fg(v,isZ)};font-family:Share Tech Mono;font-size:8px;opacity:.65">${v}/5</div>`:''}
+        const v=row[cat.k]||0;
+        const isAI=cat.k==='ai',isCyb=cat.k==='cyber';
+        return`<td style="background:${bg(v,isAI,isCyb)}">
+          <div style="color:${fg(v)};font-size:14px;letter-spacing:1px;line-height:1">${SYM[v]}</div>
+          ${v>0?`<div style="color:${fg(v)};font-family:'Share Tech Mono';font-size:8px;opacity:.65;margin-top:2px">${v}/5</div>`:''}
         </td>`;
       }).join('')}
-      <td style="color:${col};font-family:Share Tech Mono;font-size:12px;font-weight:700">${cc.du.toFixed(2)}</td>
+      <td style="color:var(--c);font-family:'Share Tech Mono';font-size:11px">${cc.patents}</td>
+      <td style="color:${col};font-family:'Share Tech Mono';font-size:11px;font-weight:700">${cc.du.toFixed(2)}</td>
     </tr>`;
   }).join('');
+
+  // Group headers
+  const groupHdr=`<tr>
+    <th class="lh" style="border:none;background:transparent"></th>
+    <th colspan="1" style="color:var(--cat1);border-bottom:2px solid var(--cat1);font-size:8px">◈ A&R</th>
+    <th colspan="2" style="color:var(--cat2);border-bottom:2px solid var(--cat2);font-size:8px">◈◈ AI & Cyberbezpieczeństwo</th>
+    <th colspan="3" style="color:var(--cat3);border-bottom:2px solid var(--cat3);font-size:8px">◈◈◈ Zaawansowane Materiały</th>
+    <th colspan="2" style="color:var(--cat3);border-bottom:2px solid var(--cat3);font-size:8px"></th>
+    <th colspan="2" style="border:none;background:transparent"></th>
+  </tr>`;
 
   document.getElementById('mx-container').innerHTML=`
     <div style="margin-bottom:14px">
       <h2 style="font-family:Orbitron;font-size:12px;color:var(--c);letter-spacing:3px">▦ MACIERZ KOMPETENCJI TECHNOLOGICZNYCH</h2>
-      <p style="font-family:Share Tech Mono;font-size:8px;color:var(--m);margin-top:3px">
-        Ocena 1–5 wg dominujących kategorii patentowych. Kolumna 🔴 Uzbrojenie = sygnał ryzyka dual-use i ograniczeń eksportowych.
+      <p style="font-family:'Share Tech Mono';font-size:8px;color:var(--m);margin-top:3px">
+        Ocena 1–5 wg dominujących filarów patentowych z 3 kategorii. Pasek pod nazwą = proporcja A&R / AI / ZM.
       </p>
     </div>
     <table class="mx">
-      <thead><tr>
-        <th class="lh">Kraj · Rola Regionalna</th>
-        ${CATS.map(c=>`<th style="color:${c.color};border-bottom:2px solid ${c.color}50">
-          <div>${c.l}</div>
-          <div style="font-family:Rajdhani;font-size:8px;color:${c.color}80;letter-spacing:0;margin-top:2px;white-space:normal;max-width:90px">${c.sub}</div>
-        </th>`).join('')}
-        <th style="color:var(--m)">Śr.&nbsp;DU</th>
-      </tr></thead>
+      <thead>
+        ${groupHdr}
+        <tr>
+          <th class="lh">Kraj · Rola · Podział kategorii</th>
+          ${CATS.map(c=>`<th style="color:${c.color};border-bottom:2px solid ${c.color}44;min-width:80px">
+            <div style="line-height:1.2">${c.l.replace('\n','<br>')}</div>
+            <div style="font-family:Rajdhani;font-size:7px;color:${c.color}77;letter-spacing:0;margin-top:2px;white-space:normal;max-width:80px;font-weight:400">${c.sub}</div>
+          </th>`).join('')}
+          <th style="color:var(--m)">Pat.</th>
+          <th style="color:var(--m)">Śr.&nbsp;DU</th>
+        </tr>
+      </thead>
       <tbody>${rows}</tbody>
     </table>
-    <div style="margin-top:16px;display:flex;gap:18px;flex-wrap:wrap;align-items:center">
-      <span style="font-family:Share Tech Mono;font-size:8px;color:var(--m)">INTENSYWNOŚĆ:</span>
+    <div style="margin-top:16px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+      <span style="font-family:'Share Tech Mono';font-size:8px;color:var(--m)">INTENSYWNOŚĆ:</span>
       ${SYM.map((sym,i)=>{
-        const labels=['Brak','Niska','Średnia','Wysoka','B. Wysoka','Dominująca'];
-        const bg_=i===0?'rgba(7,15,32,.7)':`rgba(${i*14},${38+i*22},${78+i*28},.65)`;
+        const labs=['Brak','Niska','Średnia','Wysoka','B.Wysoka','Dominująca'];
+        const bg_=i===0?'rgba(7,15,32,.7)':`rgba(${i*12},${35+i*20},${75+i*25},.65)`;
         return`<span style="display:flex;align-items:center;gap:5px">
-          <span style="background:${bg_};padding:3px 9px;border-radius:2px;font-size:13px;color:#80c0e0;min-width:32px;text-align:center">${sym}</span>
-          <span style="font-size:10px;color:var(--m);font-family:Rajdhani">${labels[i]}</span>
+          <span style="background:${bg_};padding:2px 8px;border-radius:2px;font-size:13px;color:#80c0e0;min-width:32px;text-align:center">${sym}</span>
+          <span style="font-size:10px;color:var(--m);font-family:Rajdhani">${labs[i]}</span>
         </span>`;
       }).join('')}
-      <span style="display:flex;align-items:center;gap:5px;margin-left:8px">
-        <span style="background:rgba(180,20,20,.7);padding:3px 9px;border-radius:2px;font-size:13px;color:#ffa0a0;border:1px solid rgba(255,60,60,.4)">★</span>
-        <span style="font-size:10px;color:var(--r);font-family:Rajdhani">Uzbrojenie – sygnał dual-use</span>
+      <span style="margin-left:12px;display:flex;gap:12px;align-items:center;font-family:'Share Tech Mono';font-size:8px;color:var(--m)">
+        PASEK:
+        <span style="display:flex;gap:2px;align-items:center"><span style="width:18px;height:6px;background:var(--cat1);border-radius:1px;display:inline-block"></span>A&R</span>
+        <span style="display:flex;gap:2px;align-items:center"><span style="width:18px;height:6px;background:var(--cat2);border-radius:1px;display:inline-block"></span>AI</span>
+        <span style="display:flex;gap:2px;align-items:center"><span style="width:18px;height:6px;background:var(--cat3);border-radius:1px;display:inline-block"></span>ZM</span>
       </span>
     </div>
   `;
 }
 
-// ── FILTERS ──────────────────────────────────────────────────
+// ── FILTERS ───────────────────────────────────────────────────
 function applyFilter(f,btn){
   document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   const ok=id=>{
+    const cc=cById[id];if(!cc)return true;
     if(f==='all')      return true;
     if(f==='trojmorze')return TMORZE.includes(id);
-    if(f==='risk5')    return cById[id]?.du>=5;
-    if(f==='high')     return cById[id]?.du>=4;
+    if(f==='AR')       return cc.AR>0;
+    if(f==='AI')       return cc.AI>0;
+    if(f==='ZM')       return cc.ZM>0;
     return true;
   };
   if(netI){
     const s=d3.select('#net-svg');
     s.selectAll('.nc').style('opacity',d=>ok(d.id)?1:.07);
     s.selectAll('.no').style('opacity',d=>ok(d.c)?1:.04);
-    s.selectAll('.ni').style('opacity',.22);
+    s.selectAll('.ni').style('opacity',.2);
+    if(f==='AR') s.selectAll('.ni').filter(d=>d.id==='CAT_AR').style('opacity',1);
+    if(f==='AI') s.selectAll('.ni').filter(d=>d.id==='CAT_AI').style('opacity',1);
+    if(f==='ZM') s.selectAll('.ni').filter(d=>d.id==='CAT_ZM').style('opacity',1);
   }
   if(mapI){
-    d3.select('#map-svg').selectAll('.hubs g').style('opacity',d=>d&&ok(d.id)?1:.1);
-    d3.select('#map-svg').selectAll('.cfoc').style('opacity',function(f){
-      const cc=cMap[+f?.id];return(!cc||ok(cc.id))?1:.2;
+    d3.select('#map-svg').selectAll('.hubs g').style('opacity',d=>d&&ok(d.id)?1:.08);
+    d3.select('#map-svg').selectAll('.cfoc').style('opacity',function(f_){
+      const cc=cMap[+f_?.id];return(!cc||ok(cc.id))?1:.18;
     });
   }
 }
 
-// ── INIT ─────────────────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────────────────
 window.addEventListener('load',()=>{initMap();mapI=true;});
 </script>
 </body>
