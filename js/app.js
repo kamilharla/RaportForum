@@ -47,4 +47,4 @@ function applyFilter(f, btn){
 }
 
 // ── INIT ──────────────────────────────────────────────────────
-window.addEventListener('load', () => { initMap(); mapI = true; });
+window.addEventListener('load', () => { initMx(); mxI = true; });

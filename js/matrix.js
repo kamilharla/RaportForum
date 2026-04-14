@@ -1,7 +1,6 @@
 // ── MATRIX ────────────────────────────────────────────────────
 function initMx(){
 
-  // 9 sub-categories from PATSTAT (3 per main group)
   const CATS=[
     {k:'b64c', l:'Statki\npowietrzne', sub:'B64C39 · bezzałogowe',              color:'#00c8ff', cat:'AR'},
     {k:'b64u', l:'Drony\n(UAV)',        sub:'B64U · systemy dronów',             color:'#40d8ff', cat:'AR'},
@@ -14,7 +13,6 @@ function initMx(){
     {k:'c08l', l:'Kom-\npozyta',         sub:'C08L · polimery i kompozyty',      color:'#88cc88', cat:'ZM'},
   ];
 
-  // Real patent counts from PATSTAT/EPO 2020–2025
   const MAT={
     BG: {b64c:0,  b64u:0,  g05d:0,  g06n:5,   h04l:0,  g06f:4,  b33y:3,  b22f:1,  c08l:6  },
     CZ: {b64c:27, b64u:4,  g05d:11, g06n:6,   h04l:0,  g06f:20, b33y:71, b22f:15, c08l:65 },
@@ -30,7 +28,6 @@ function initMx(){
     LV: {b64c:0,  b64u:0,  g05d:0,  g06n:1,   h04l:0,  g06f:0,  b33y:2,  b22f:0,  c08l:0  },
   };
 
-  // Max per column for color intensity normalization
   const maxV={};
   CATS.forEach(cat=>{
     maxV[cat.k]=Math.max(...Object.values(MAT).map(r=>r[cat.k]||0),1);
@@ -44,6 +41,7 @@ function initMx(){
     if(cat.k==='g06f'){ return `rgba(${Math.round(50+t*80)},${Math.round(10+t*20)},${Math.round(80+t*120)},.70)`; }
     return `rgba(${Math.round(t*14)},${Math.round(38+t*118)},${Math.round(78+t*138)},.68)`;
   }
+
   function fg(v, catK){
     if(v===0) return '#1a3050';
     const t=v/maxV[catK];
@@ -71,11 +69,10 @@ function initMx(){
       ${CATS.map(cat=>{
         const v=row[cat.k]||0;
         return`<td style="background:${bg(v,cat)}">
-          <div style="color:${fg(v,cat.k)};font-family:'Share Tech Mono';font-size:${18}px;font-weight:600;line-height:1">${v||'—'}</div>
+          <div style="color:${fg(v,cat.k)};font-family:'Share Tech Mono';font-size:18px;font-weight:600;line-height:1">${v||'—'}</div>
         </td>`;
       }).join('')}
       <td style="color:var(--c);font-family:'Share Tech Mono';font-size:18px">${cc.patents}</td>
-      <td style="color:${col};font-family:'Share Tech Mono';font-size:18px;font-weight:700">${cc.du.toFixed(2)}</td>
     </tr>`;
   }).join('');
 
@@ -84,14 +81,14 @@ function initMx(){
     <th colspan="3" style="color:var(--cat1);border-bottom:2px solid var(--cat1);font-size:14px">◈ Automatyzacja i Robotyka</th>
     <th colspan="3" style="color:var(--cat2);border-bottom:2px solid var(--cat2);font-size:14px">◈◈ AI i Cyberbezpieczeństwo</th>
     <th colspan="3" style="color:var(--cat3);border-bottom:2px solid var(--cat3);font-size:14px">◈◈◈ Zaawansowane Materiały</th>
-    <th colspan="2" style="border:none;background:transparent"></th>
+    <th style="border:none;background:transparent"></th>
   </tr>`;
 
   document.getElementById('mx-container').innerHTML=`
     <div style="margin-bottom:14px">
-      <h2 style="font-family:Orbitron;font-size:18px;color:var(--c);letter-spacing:3px">▦ MACIERZ PATENTÓW WG PODKATEGORII MKP</h2>
+      <h2 style="font-family:Orbitron;font-size:18px;color:var(--c);letter-spacing:3px">▦ MACIERZ PATENTÓW WG PODKATEGORII</h2>
       <p style="font-family:'Share Tech Mono';font-size:18px;color:var(--m);margin-top:3px">
-        Liczba patentów EPO/PATSTAT 2020–2025 · 9 podkategorii MKP · intensywność koloru = udział w max. kolumny
+        Liczba patentów EPO/PATSTAT 2020–2025 · 9 podkategorii · intensywność koloru = udział w max. kolumny
       </p>
     </div>
     <table class="mx">
@@ -104,7 +101,6 @@ function initMx(){
             <div style="font-family:'Share Tech Mono';font-size:14px;color:${c.color}88;margin-top:2px;white-space:normal;font-weight:400">${c.sub}</div>
           </th>`).join('')}
           <th style="color:var(--m)">Łącznie</th>
-          <th style="color:var(--m)">Śr.&nbsp;DU</th>
         </tr>
       </thead>
       <tbody>${rows}</tbody>
