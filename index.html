@@ -34,7 +34,6 @@
       </svg>
     </div>
     <div>
- 
       <div class="ht">Horizon Foresight</div>
       <div class="hs">ANALIZA PATENTÓW DUAL-USE · 3 KATEGORIE TECHNOLOGICZNE · 2020–2026</div>
     </div>
@@ -62,6 +61,36 @@
 </div>
 
 <div class="body">
+    
+    
+  <aside>
+    <div class="asec">
+      <h3>Wskaźnik DFI</h3>
+      <div class="lr"><div class="ld" style="background:#1450b4"></div><span style="color:#6090ff">IB – Innovation-Based</span></div>
+      <div class="lr"><div class="ld" style="background:#aa2020"></div><span style="color:#ff6060">MD – Market-Driven</span></div>
+    </div>
+    <div class="asec" id="leg-net" style="display:none">
+      <h3>Typ podmiotu (graf)</h3>
+      <div class="lr"><div class="ld" style="background:#00c8ff;box-shadow:0 0 5px #00c8ff"></div><span>Kraj</span></div>
+      <div class="lr"><div class="ld" style="background:#ff4040"></div><span>Instytucja publiczna</span></div>
+      <div class="lr"><div class="ld" style="background:#ffb300"></div><span>Firma prywatna</span></div>
+    </div>
+    <div class="iscroll" id="infopanel">
+      <div class="ic">
+        <h4>INSTRUKCJA</h4>
+        <p>Najedź na kraj aby zobaczyć szczegóły. Kolor wypełnienia = typ DFI. Kliknij węzeł w grafie aby zobaczyć profil.</p>
+      </div>
+      <div class="ic">
+        <h4>KATEGORIE</h4>
+        <p>
+          <span class="tag" style="color:var(--cat1)">A&amp;R</span> Automatyzacja i Robotyzacja<br>
+          <span class="tag" style="color:var(--cat2)">AI</span> AI i Cyberbezpieczeństwo<br>
+          <span class="tag" style="color:var(--cat3)">ZM</span> Zaawansowane Materiały
+        </p>
+      </div>
+    </div>
+  </aside>
+    
   <div class="canvas">
 
     <div class="view" id="view-map">
@@ -71,18 +100,19 @@
 
     <div class="view" id="view-net">
       <div class="view-inner" id="net-inner"><svg id="net-svg"></svg><div class="tip" id="tip-net"></div></div>
-      <div class="sbar"><span class="live">AKTYWNY</span><span>Przeciągnij węzły · Scroll=zoom · Klik=szczegóły</span></div>
+      <div class="sbar"><span class="live">AKTYWNY</span><span>Przeciągnij węzły · Scroll=zoom · Klik=szczegóły</span><span style="margin-left:auto">SGH WARSZAWA · FORUM KARPACZ 2026</span></div>
     </div>
 
     <div class="view on" id="view-mx">
       <div class="mwrap" id="mx-container"></div>
-      <div class="sbar"><span class="live">AKTYWNY</span><span>Specjalizacje technologiczne wg dominujących filarów patentowych z 3 kategorii</span></div>
+      <div class="sbar"><span class="live">AKTYWNY</span><span>Specjalizacje technologiczne wg dominujących filarów patentowych z 3 kategorii</span><span style="margin-left:auto">SGH WARSZAWA · FORUM KARPACZ 2026</span></div>
     </div>
 
   </div>
 </div>
 
 <script src="js/data.js"></script>
+<script src="js/map.js"></script>
 <script src="js/network.js"></script>
 <script src="js/matrix.js"></script>
 <script src="js/app.js"></script>
